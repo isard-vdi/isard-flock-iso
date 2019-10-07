@@ -4,7 +4,7 @@
 VERSION="0.1"
 ISO_ORIGINAL="isos/CentOS-7-x86_64-Minimal-1810.iso"
 KSFILE="cfg/ks.cfg"
-OUTNAME="Isard-Flock_x86_64-v$VERSION.iso"
+OUTNAME="Isard-Flock_CentOS7_x86_64-v$VERSION.iso"
 
 if [[ ! -f $ISO_ORIGINAL ]]; then
 	wget -P isos/ http://ftp.uma.es/mirror/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
@@ -94,8 +94,9 @@ rm -rf $DST/Packages/*
 
 cp ./packages/* $DST/Packages
 cp ./linstor/* $DST/Packages
-mkdir $DST/resources
-cp resources/* $DST/resources
+# Don't need to be copied, will be cloned from isard-flock in ks.cfg
+#mkdir $DST/resources
+#cp resources/* $DST/resources
 
 #~ cd ./bootisoks/repodata
 #~ mv ./*minimal-x86_64-comps.xml comps.xml && {
