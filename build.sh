@@ -7,7 +7,7 @@ KSFILE="cfg/ks.cfg"
 OUTNAME="Isard-Flock_CentOS7_x86_64-v$VERSION.iso"
 
 if [[ ! -f $ISO_ORIGINAL ]]; then
-	wget -P isos/ http://ftp.uma.es/mirror/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+    wget -P isos/ http://ftp.uma.es/mirror/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
 fi
 
 WORK=$PWD/WORK
@@ -92,8 +92,8 @@ echo "Copy custom RPM to $DST/Packages"
 
 rm -rf $DST/Packages/*
 
-cp ./packages/* $DST/Packages
-cp ./linstor/* $DST/Packages
+cp -v ./packages/* $DST/Packages
+cp -v ./linstor/* $DST/Packages
 # Don't need to be copied, will be cloned from isard-flock in ks.cfg
 #mkdir $DST/resources
 #cp resources/* $DST/resources
@@ -122,6 +122,14 @@ echo "Update repository index"
 (
     echo "$PWD - Create custom ISO";
     cd $DST;
+
+    #~ genisoimage -U -A "CentOS 7 x86_64" -V "CentOS 7 x86_64 Disc 1" \
+    #~ -volset "CentOS 7 x86_64" -J -joliet-long -r -v -T -x ./lost+found \
+    #~ -iso-level 4 \
+    #~ -o ../../isos/$OUTNAME \
+    #~ -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 \
+    #~ -boot-info-table -eltorito-alt-boot -e images/efiboot.img -no-emul-boot .
+    
     genisoimage \
         -V "CentOS 7 x86_64" \
         -A "CentOS 7 x86_64" \
