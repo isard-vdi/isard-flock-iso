@@ -98,6 +98,10 @@ rm -rf $DST/Packages/*
 
 cp -v ./packages/* $DST/Packages
 cp -v ./isard-flock/resources/linstor/*.rpm $DST/Packages
+
+cp -v -R ./isard-flock $DST/isard-flock
+cp -v -R ./repos $DST/repos
+#~ rm -rf $DST/isard-flock/resources/linstor/*.rpm
 # Don't need to be copied, will be cloned from isard-flock in ks.cfg
 #mkdir $DST/resources
 #cp resources/* $DST/resources
