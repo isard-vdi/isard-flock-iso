@@ -93,7 +93,7 @@ echo "Copy custom RPM to $DST/Packages"
 rm -rf $DST/Packages/*
 
 cp -v ./packages/* $DST/Packages
-cp -v ./linstor/* $DST/Packages
+cp -v ./isard-flock/resources/linstor/*.rpm $DST/Packages
 # Don't need to be copied, will be cloned from isard-flock in ks.cfg
 #mkdir $DST/resources
 #cp resources/* $DST/resources
