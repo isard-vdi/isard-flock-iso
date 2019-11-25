@@ -1,0 +1,3 @@
+[submodule "isard-flock"]
+	path = isard-flock
+	url = https://github.com/isard-vdi/isard-flock

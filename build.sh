@@ -1,13 +1,17 @@
 #!/bin/bash
 # Build Isard Flock install ISO
+set -e
+
+MIRROR="http://repos-va.psychz.net/centos/7.6.1810/isos/x86_64/"
+FILENAME="CentOS-7-x86_64-Minimal-1810.iso"
 
 VERSION="0.1"
-ISO_ORIGINAL="isos/CentOS-7-x86_64-Minimal-1810.iso"
+ISO_ORIGINAL="isos/$FILENAME"
 KSFILE="cfg/ks.cfg"
 OUTNAME="Isard-Flock_CentOS7_x86_64-v$VERSION.iso"
 
 if [[ ! -f $ISO_ORIGINAL ]]; then
-    wget -P isos/ http://ftp.uma.es/mirror/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso
+    wget -P isos/ $MIRROR
 fi
 
 WORK=$PWD/WORK
@@ -93,7 +97,7 @@ echo "Copy custom RPM to $DST/Packages"
 rm -rf $DST/Packages/*
 
 cp -v ./packages/* $DST/Packages
-cp -v ./linstor/* $DST/Packages
+cp -v ./isard-flock/resources/linstor/*.rpm $DST/Packages
 # Don't need to be copied, will be cloned from isard-flock in ks.cfg
 #mkdir $DST/resources
 #cp resources/* $DST/resources
